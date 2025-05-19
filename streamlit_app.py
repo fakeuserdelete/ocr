@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+BACKEND_URL = os.getenv("BACKEND_URL")
+
 st.set_page_config(page_title="Document OCR & Analysis", page_icon="📄", layout="wide")
 
 st.markdown(
@@ -67,11 +69,11 @@ with col1:
                 try:
                     if analysis_mode == "Automatic Information Extraction":
                         response = requests.post(
-                            "http://localhost:8000/submit-document/", files=files
+                            f"{BACKEND_URL}/submit-document/", files=files
                         )
                     else:
                         response = requests.post(
-                            "http://localhost:8000/submit-document-text/",
+                            f"{BACKEND_URL}/submit-document-text/",
                             files=files,
                             data={"prompt": custom_query},
                         )

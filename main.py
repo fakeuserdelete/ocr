@@ -43,7 +43,7 @@ async def upload_image_and_text(
     with open(file_location, "wb") as f:
         f.write(await file.read())
 
-    custom_prompt = f"{prompt}\nReturn it in JSON format like: {{'Given Name':'JOHN','Date of Birth':'03.10.1976'}}"
+    custom_prompt = f"Analyze this image, think through it and extract all the information you can find in the image and return it in a structured JSON format. {prompt}"
 
     response = get_gemini_response_query(genai, model, file_location, custom_prompt)
 
